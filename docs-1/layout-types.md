@@ -2,13 +2,13 @@
 
 The possibilities of the RNN layout API are wide open in terms of what you can construct with it: stacks, tabs and drawers in many combinations.
 
-You can compose arbitrary native layout hierarchies (although some weird edge cases may not be possible or produce errors). In such cases, open an issue so that we either fix it or warn in dev time.
+You can compose arbitrary native layout hierarchies \(although some weird edge cases may not be possible or produce errors\). In such cases, open an issue so that we either fix it or warn in dev time.
 
 ## component
 
 Component layout holds a single react component.
 
-```js
+```javascript
 const component = {
   id: 'component1', // Optional, Auto generated if empty
   name: 'Your registered component name',
@@ -21,10 +21,9 @@ const component = {
 
 ## stack
 
-Support children layouts of any kind.
-A stack can be initialised with more than one screen, in which case the last screen will be presented at the top of the stack.
+Support children layouts of any kind. A stack can be initialised with more than one screen, in which case the last screen will be presented at the top of the stack.
 
-```js
+```javascript
 const stack = {
   children: [
     {
@@ -39,12 +38,16 @@ const stack = {
 ```
 
 ### api
+
 ### TopBar buttons
+
 #### Android:
+
 * LeftButtons just support one button 
-* RightButtons support three visable buttons, more getting replaced with a menu button 
-```js
-options: {
+* RightButtons support three visable buttons, more getting replaced with a menu button
+
+  ```javascript
+  options: {
   topBar: {
     visible: true,
     leftButtons: [
@@ -64,13 +67,17 @@ options: {
       },
     ],
   },
-},
-```
-### Customizations
-#### Custom TopBar Title
-It's possible to set a custom topBar title to implement a searchbar for example.
-```js
-options: {
+  },
+  ```
+
+  **Customizations**
+
+  **Custom TopBar Title**
+
+  It's possible to set a custom topBar title to implement a searchbar for example.
+
+  ```javascript
+  options: {
   topBar: {
     visible: true,
     title: {
@@ -84,12 +91,14 @@ options: {
       },
     },
   },
-},
-```
+  },
+  ```
 
 ### Back button
+
 Push a ModalStack which requires a back button on the first screen.
-```js
+
+```javascript
 options: {
   topBar: {
     visible: true,
@@ -104,9 +113,10 @@ options: {
   },
 },
 ```
+
 Catch the button press event inside the ModalScreen.
 
-```js
+```javascript
 navigationButtonPressed = ({ buttonId }) => {
   const { componentId } = this.props;
   if (buttonId === 'back') {
@@ -115,10 +125,9 @@ navigationButtonPressed = ({ buttonId }) => {
 }
 ```
 
-
 ## bottomTabs
 
-```js
+```javascript
 const bottomTabs = {
   children: [
     {
@@ -152,9 +161,9 @@ const bottomTabs = {
 
 The selected index is a style property which can be updated using the `mergeOptions` command. In order to update the BottomTabs options, Pass the BottomTabs `componentId` or the `componentId` of one of its children.
 
-?>We'll use the following BottomTabs layout to demonstrate programmatic tab selection.
+?&gt;We'll use the following BottomTabs layout to demonstrate programmatic tab selection.
 
-```js
+```javascript
 const bottomTabs = {
   id: 'BottomTabsId',
   children: [
@@ -179,7 +188,7 @@ const bottomTabs = {
 
 The following `mergeOptions` command will select the second tab. We're passing the id of our BottomTabs, but we could also use the id of any of the child components, for example `SecondScreenId`.
 
-```js
+```javascript
 Navigation.mergeOptions('BottomTabsId', {
   bottomTabs: {
     currentTabIndex: 1
@@ -193,7 +202,7 @@ Tabs can also be selected by componentId. This is particularly useful in cases w
 
 For example, if invoked from one of the child components;`SecondScreen` or `FirstScreen`, the following merge command will select the tab containing the child.
 
-```js
+```javascript
 Navigation.mergeOptions(this.props.componentId, {
   bottomTabs: {
     currentTabId: this.props.componentId
@@ -207,7 +216,7 @@ The `visible` property can be used to control the BottomTab visibility.
 
 On **Android**, Visibility can be toggled dynamically using the `mergeOptions` command. When hiding BottomTabs, `drawBehind: true` should be specified in order for the screen to render behind the area which was previously allocated to the BottomTabs.
 
-```js
+```javascript
 Navigation.mergeOptions(componentId, {
   bottomTabs: {
     visible: false,
@@ -218,7 +227,7 @@ Navigation.mergeOptions(componentId, {
 
 On **both** platforms visibility can be changed when pushing screens into a stack which is a direct child of a `BottomTabs` layout:
 
-```js
+```javascript
 Navigation.push(componentId, {
   component: {
     name: 'pushedScreen',
@@ -233,10 +242,9 @@ Navigation.push(componentId, {
 
 ### Updating options for a specific tab
 
-Updating (merging) tab specific options is done using the `mergeOptions` command. `mergeOptions` expects a `componentId` as first argument, therefore in order to update a specific tab we'll need to pass a `componentId` of a child of that specific tab.
-For example, Using the layout specified above, To update the `badge` property of the second tab we'll call `mergeOptions` with `SecondScreenId`.
+Updating \(merging\) tab specific options is done using the `mergeOptions` command. `mergeOptions` expects a `componentId` as first argument, therefore in order to update a specific tab we'll need to pass a `componentId` of a child of that specific tab. For example, Using the layout specified above, To update the `badge` property of the second tab we'll call `mergeOptions` with `SecondScreenId`.
 
-```js
+```javascript
 Navigation.mergeOptions('SecondScreenId', {
   bottomTab: {
     badge: 'New'
@@ -246,10 +254,9 @@ Navigation.mergeOptions('SecondScreenId', {
 
 ## sideMenu
 
-This layout allows to implement sidemenus, which can be opened by swiping from one side towards the other side.
-`left` and `right` are optional and contain the components, which gets rendered for the sidemenus. `center` is **required** and contains the main application, which **requires** to have a topBar aka `stack`.
+This layout allows to implement sidemenus, which can be opened by swiping from one side towards the other side. `left` and `right` are optional and contain the components, which gets rendered for the sidemenus. `center` is **required** and contains the main application, which **requires** to have a topBar aka `stack`.
 
-```js
+```javascript
 const sideMenu = {
   left: {
     component: {}
@@ -269,8 +276,10 @@ const sideMenu = {
 ```
 
 ### Opening the menu programmatically
-The  most common usecase is to open the sidemenus by pressing a [burger button in the topBar](https://wix.github.io/react-native-navigation/#/docs/layout-types?id=adding-a-hamburger-button). To achive this listen on the press event of the burger button and open the sidemenu by calling `Navigation.mergeOptions()` with `visible: true` for the sidemenu.
-```js
+
+The most common usecase is to open the sidemenus by pressing a [burger button in the topBar](https://wix.github.io/react-native-navigation/#/docs/layout-types?id=adding-a-hamburger-button). To achive this listen on the press event of the burger button and open the sidemenu by calling `Navigation.mergeOptions()` with `visible: true` for the sidemenu.
+
+```javascript
 navigationButtonPressed = ({ buttonId }) => {
   const { componentId } = this.props;
 
@@ -287,9 +296,10 @@ navigationButtonPressed = ({ buttonId }) => {
 ```
 
 ### Adding a hamburger button
+
 For more information on how to add icons read [this article about react-native-vector-icons](https://wix.github.io/react-native-navigation/#/docs/third-party?id=react-native-vector-icons) or [this article about custom tab icons](https://wix.github.io/react-native-navigation/#/docs/styling?id=custom-tab-icons).
 
-```js
+```javascript
 leftButtons: [
   {
     id: 'sideMenu',
@@ -300,13 +310,13 @@ leftButtons: [
 ],
 ```
 
-## splitView (iOS only)
+## splitView \(iOS only\)
 
 Master and Detail based layout.
 
 You can change the it's options with `Navigation.mergeOptions('splitView1', { maxWidth: 400 })`.
 
-```js
+```javascript
 const splitView = {
   id: 'splitView1', // Required to update options
   master: {
@@ -330,7 +340,7 @@ const splitView = {
 
 ### Single page app with two side menus:
 
-```js
+```javascript
 Navigation.setRoot({
   root: {
     sideMenu: {
@@ -360,9 +370,9 @@ Navigation.setRoot({
 });
 ```
 
-### Tab based app (with passProps example):
+### Tab based app \(with passProps example\):
 
-```js
+```javascript
 Navigation.setRoot({
   root: {
     bottomTabs: {
@@ -390,9 +400,9 @@ Navigation.setRoot({
 });
 ```
 
-### Stack based app (with options example, initialised with 2 screens):
+### Stack based app \(with options example, initialised with 2 screens\):
 
-```js
+```javascript
 Navigation.setRoot({
   root: {
     stack: {
@@ -424,3 +434,4 @@ Navigation.setRoot({
   }
 });
 ```
+

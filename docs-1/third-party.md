@@ -3,7 +3,8 @@
 ## Redux
 
 Create a HOC which provides the redux store.
-```js
+
+```javascript
 import { Provider } from 'react-redux';
 
 let store;
@@ -17,8 +18,10 @@ function ReduxProvider(Component) {
     );
 }
 ```
+
 Wrap all Screens, which need the redux store, with the HOC.
-```js
+
+```javascript
 import { Navigation } from 'react-native-navigation';
 
 export default () => {
@@ -30,10 +33,9 @@ For more information about how to set up redux read the [react-redux docs](https
 
 ## react-native-vector-icons
 
-This library can be used to set icons as the following example does.
-For available icons read the [react-native-vector-icons docs](https://github.com/oblador/react-native-vector-icons).
+This library can be used to set icons as the following example does. For available icons read the [react-native-vector-icons docs](https://github.com/oblador/react-native-vector-icons).
 
-```js
+```javascript
 import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
 import { Navigation } from 'react-native-navigation';
 
@@ -99,3 +101,4 @@ export default function startApp() {
 ```
 
 Its also possible to to define custom icons without react-native-vector-icons within the iOS and Android project as described [here](https://wix.github.io/react-native-navigation/#/docs/styling?id=custom-tab-icons).
+

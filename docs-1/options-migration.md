@@ -1,9 +1,12 @@
-# Common Options
+# options-migration
 
-## navBarTextColor
+## Common Options
+
+### navBarTextColor
+
 Title text color
 
-```js
+```javascript
 topBar: {
   title: {
     color: 'red'
@@ -11,10 +14,11 @@ topBar: {
 }
 ```
 
-## navBarTextFontSize
+### navBarTextFontSize
+
 Title font size
 
-```js
+```javascript
 topBar: {
   title: {
     fontSize: 18
@@ -22,10 +26,11 @@ topBar: {
 }
 ```
 
-## navBarTextFontFamily
+### navBarTextFontFamily
+
 Title font
 
-```js
+```javascript
 topBar: {
   title: {
     fontFamily: 'Helvetica'
@@ -33,21 +38,23 @@ topBar: {
 }
 ```
 
-## navBarBackgroundColor
+### navBarBackgroundColor
+
 TopBar background color
 
-```js
+```javascript
 topBar: {
   background: {
     color: 'red'
   }
-}  
+}
 ```
 
-## navBarCustomView
+### navBarCustomView
+
 Use a react view as the TopBar's background or use a React view instead of the textual title.
 
-```js
+```javascript
 topBar: {
   background: {
     component: {
@@ -62,10 +69,11 @@ topBar: {
 }
 ```
 
-## navBarClipToBounds
+### navBarClipToBounds
+
 Restrict the navbar background color to the navbar, and do not flow behind the status bar.
 
-```js
+```javascript
 topBar: {
   background: {
     component: {
@@ -76,10 +84,11 @@ topBar: {
 }
 ```
 
-## navBarComponentAlignment
+### navBarComponentAlignment
+
 Align the React view used as the title
 
-```js
+```javascript
 topBar: {
   title: {
     component: {
@@ -87,13 +96,14 @@ topBar: {
       alignment: 'center' | 'fill'
     }
   }
-}  
+}
 ```
 
-## navBarCustomViewInitialProps
+### navBarCustomViewInitialProps
+
 Initial props passed to the React component
 
-```js
+```javascript
 topBar: {
   background: {
     component: {
@@ -107,13 +117,14 @@ topBar: {
       passProps: {}
     }
   }
-} 
+}
 ```
 
-## navBarButtonColor
+### navBarButtonColor
+
 TopBar button color
 
-```js
+```javascript
 topBar: {
   rightButtons: [
     {
@@ -131,84 +142,95 @@ topBar: {
 }
 ```
 
-## navBarHidden
+### navBarHidden
+
 TopBar visibility. When setting `visible: false`, you probably want to set `drawBehind: true` as well. Use `animate: false` to toggle visibility without animation.
 
-```js
+```javascript
 topBar: {
   visible: false
-} 
+}
 ```
 
-## navBarTransparent
+### navBarTransparent
+
 Transparent TopBar. Set `drawBehind: true` to draw the screen behind the transparent TopBar.
 
-```js
+```javascript
 topBar: {
   background: {
     color: 'transparent'
   }
-}  
+}
 ```
 
-## drawUnderNavBar
+### drawUnderNavBar
+
 Draw the screen behind the TopBar, Useful when the TopBar is toggled or transparent
 
-```js
+```javascript
 topBar: {
   drawBehind: true
-}  
+}
 ```
 
-## drawUnderTabBar
+### drawUnderTabBar
+
 Draw the screen behind the BottomTabs, Useful when toggling BottomTabs or when the BottomTabs are translucent.
 
-```js
+```javascript
 bottomTabs: {
   drawBehind: true
-}  
+}
 ```
 
-## tabBarHidden
+### tabBarHidden
+
 BottomTabs visibility.
-```js
+
+```javascript
 bottomTabs: {
   visible: false
-}  
+}
 ```
 
 The BottomTab's visibility can be toggled only on **Android** using `mergeOptions`:
-```js
+
+```javascript
 Navigation.mergeOptions(this.props.componentId, {
   bottomTabs: {
     visible: false
   }
 });
 ```
+
 On **iOS**, BottomTab visibility can be changed only when pushing screens. This means that if you'd like to hide BottomTabs when pushing a screen, You'll need to set the property to `false` in the options passed to the `push` command or via the `static options(passProps) {}` api.
 
-## statusBarHidden
+### statusBarHidden
+
 StatusBar visibility. For android, also set `drawBehind: true`.
 
-```js
+```javascript
 statusBar: {
   visible: false
-}  
+}
 ```
 
-## statusBarTextColorScheme
+### statusBarTextColorScheme
+
 Theme of text and icons displayed in the StatusBar
 
-```js
+```javascript
 statusBar: {
   style: 'light' | 'dark'
 }
 ```
 
-## navBarSubtitleColor
+### navBarSubtitleColor
+
 Subtitle color
 
-```js
+```javascript
 topBar: {
   subtitle: {
     color: 'red'
@@ -216,10 +238,11 @@ topBar: {
 }
 ```
 
-## navBarSubtitleFontFamily
+### navBarSubtitleFontFamily
+
 Subtitle font
 
-```js
+```javascript
 topBar: {
   subtitle: {
     fontFamily: 'Helvetica'
@@ -227,10 +250,11 @@ topBar: {
 }
 ```
 
-## navBarSubtitleFontSize
+### navBarSubtitleFontSize
+
 Subtitle font size
 
-```js
+```javascript
 topBar: {
   subtitle: {
     fontSize: 14
@@ -238,27 +262,29 @@ topBar: {
 }
 ```
 
-## screenBackgroundColor
+### screenBackgroundColor
+
 Screen color, visible before the actual React view is rendered
 
-```js
+```javascript
 layout: {
   backgroundColor: 'red'
-}  
+}
 ```
 
-## orientation
+### orientation
 
-```js
+```javascript
 layout: {
   orientation: ['portrait', 'landscape'] // An array of supported orientations
 }
 ```
 
-## disabledButtonColor
+### disabledButtonColor
+
 Button color when `enabled: false` is used
 
-```js
+```javascript
 topBar: {
   rightButtons: [
     {
@@ -268,10 +294,11 @@ topBar: {
 }
 ```
 
-## navBarButtonFontSize
+### navBarButtonFontSize
+
 Button font size
 
-```js
+```javascript
 topBar: {
   rightButtons: [
     {
@@ -283,13 +310,14 @@ topBar: {
       fontSize: 13
     }
   ]
-}  
+}
 ```
 
-## navBarLeftButtonFontSize
+### navBarLeftButtonFontSize
+
 Left button font size
 
-```js
+```javascript
 {
   topBar: {
     leftButtons: [
@@ -301,10 +329,11 @@ Left button font size
 }
 ```
 
-## navBarLeftButtonColor
+### navBarLeftButtonColor
+
 Left button color
 
-```js
+```javascript
 {
   topBar: {
     leftButtons: [
@@ -316,10 +345,11 @@ Left button color
 }
 ```
 
-## navBarLeftButtonFontWeight
+### navBarLeftButtonFontWeight
+
 Left button font weight
 
-```js
+```javascript
 {
   topBar: {
     leftButtons: [
@@ -328,13 +358,14 @@ Left button font weight
       }
     ]
   }
-}  
+}
 ```
 
-## navBarRightButtonFontSize
+### navBarRightButtonFontSize
+
 Right button font size
 
-```js
+```javascript
 topBar: {
   leftButtons: [
     {
@@ -344,10 +375,11 @@ topBar: {
 }
 ```
 
-## navBarRightButtonColor
+### navBarRightButtonColor
+
 Right button color
 
-```js
+```javascript
 topBar: {
   rightButtons: [
     {
@@ -357,43 +389,48 @@ topBar: {
 }
 ```
 
-## navBarRightButtonFontWeight
+### navBarRightButtonFontWeight
+
 Right button font weight
 
-```js
+```javascript
 topBar: {
   rightButtons: [
     {
       weight: '400'
     }
   ]
-} 
+}
 ```
 
-## modalPresentationStyle
-Controls the behavior of screens displayed modally. 
+### modalPresentationStyle
 
-### Options supported on iOS
+Controls the behavior of screens displayed modally.
+
+#### Options supported on iOS
+
 * overCurrentContext - Content is displayed over the previous screen. Useful for **transparent modals**
 * `formSheet` - Content is centered in the screen
 * `pageSheet` -Content partially covers the underlying content
 * `overFullScreen` - Content covers the screen, without detaching previous content.
 * `fullScreen` - Content covers the screen, previous content is detached.
 
-### Options supported on Android
+#### Options supported on Android
+
 * `overCurrentContext` - Content is displayed over the previous screen. Useful for **transparent modals**
 * `none` - Previous content is detached when the Modal's show animation ends
 
-```js
+```javascript
 {
   modalPresentationStyle: 'overCurrentContext'
 }
 ```
 
-## navBarButtonFontFamily
+### navBarButtonFontFamily
+
 Button font family
 
-```js
+```javascript
 topBar: {
   rightButtons: [
     {
@@ -403,21 +440,23 @@ topBar: {
 }
 ```
 
-# iOS only
+## iOS only
 
-## navBarHideOnScroll
+### navBarHideOnScroll
+
 Hide TopBar when list is scrolled
 
-```js
+```javascript
 topBar: {
   hideOnScroll: true
 }
 ```
 
-## navBarTranslucent
+### navBarTranslucent
+
 Translucent TopBar, Setting `drawBehind: true` is required for this property to work as expected.
 
-```js
+```javascript
 topBar: {
   drawBehind: true,
   background: {
@@ -426,79 +465,86 @@ topBar: {
 }
 ```
 
-## navBarNoBorder
-Remove TopBar border (hair line)
+### navBarNoBorder
 
-```js
+Remove TopBar border \(hair line\)
+
+```javascript
 topBar: {
   noBorder: true
-}  
+}
 ```
 
-## navBarBlur
-Blur the area behind the TopBar, Setting `drawBehind: true` and  topBar background `transparent: true` is required for this property to work as expected.
+### navBarBlur
 
-```js
+Blur the area behind the TopBar, Setting `drawBehind: true` and topBar background `transparent: true` is required for this property to work as expected.
+
+```javascript
 topBar: {
   drawBehind: true,
   background: {
     blur: true,
     transparent: true
   }
-}  
+}
 ```
 
-## rootBackgroundImageName
+### rootBackgroundImageName
 
 * iOS: name of image in Images.xcassets
 * Android: name of drawable
 
-```js
+```javascript
 {
   rootBackgroundImage: require('rootBackground.png')
 }
 ```
 
-## screenBackgroundImageName
+### screenBackgroundImageName
+
 name of image in Images.xcassets
 
-```js
+```javascript
 {
   backgroundImage: require('background.png')
 }
 ```
 
-## statusBarHideWithNavBar
+### statusBarHideWithNavBar
+
 Hide the StatusBar if the TopBar is also hidden
 
-```js
+```javascript
 statusBar: {
   hideWithTopBar: true
 }
 ```
 
-## statusBarBlur
+### statusBarBlur
+
 Blur the area behind the StatusBar
 
-```js
+```javascript
 statusBar: {
   blur: true
-}  
+}
 ```
 
-## disabledBackGesture
-Disable the back (swipe) gesture used to pop screens 
+### disabledBackGesture
 
-```js
+Disable the back \(swipe\) gesture used to pop screens
+
+```javascript
 {
   popGesture: false
-} 
+}
 ```
 
-## largeTitle
+### largeTitle
+
 Use iOS 11 large title
 
-```js
+```javascript
   topBar: {
     largeTitle: {
       visible: true,
@@ -509,21 +555,23 @@ Use iOS 11 large title
   }
 ```
 
-# Android Options
+## Android Options
 
-## topBarElevationShadowEnabled
+### topBarElevationShadowEnabled
+
 TopBar elevation in dp. Set this value to `0` to disable the TopBar's shadow.
 
-```js
+```javascript
 topBar: {
   elevation: 0
 }
 ```
 
-## navBarTitleTextCentered
+### navBarTitleTextCentered
+
 Title alignment
 
-```js
+```javascript
 topBar: {
   title: {
     alignment: 'center'|'fill'
@@ -531,70 +579,78 @@ topBar: {
 }
 ```
 
-## statusBarColor
+### statusBarColor
+
 StatusBar color
 
-```js
+```javascript
 statusBar: {
   backgroundColor: 'red'
 }
 ```
 
-## drawUnderStatusBar
+### drawUnderStatusBar
+
 Draw content behind the StatusBar
 
-```js
+```javascript
 statusBar: {
   drawBehind: true
 }
 ```
 
-## navBarHeight
+### navBarHeight
+
 TopBar height in dp
 
-```js
+```javascript
 topBar: {
   height: 70
 }
 ```
 
-## navBarTopPadding
+### navBarTopPadding
+
 Content top margin
 
-```js
+```javascript
 layout: {
     topMargin: 26
   }
 ```
 
-## topTabsHeight
+### topTabsHeight
+
 TopTabs height
 
-```js
+```javascript
 topTabs: {
   height: 70
 }
 ```
 
-## topBarBorderColor
+### topBarBorderColor
+
 TopBar border color
 
-```js
+```javascript
 topBar: {
   borderColor: 'red'
 }
 ```
 
-## topBarBorderWidth
+### topBarBorderWidth
+
 TopBar border height
 
-```js
+```javascript
 topBar: {
   borderHeight: 1.3
-} 
+}
 ```
 
-# Unsupported options
+## Unsupported options
+
 * disabledSimultaneousGesture
 * statusBarTextColorSchemeSingleScreen
 * navBarButtonFontWeight
@@ -608,3 +664,4 @@ topBar: {
 * collapsingToolBarImage
 * collapsingToolBarCollapsedColor
 * navBarTextFontBold
+

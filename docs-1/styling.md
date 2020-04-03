@@ -1,10 +1,10 @@
 # Styling Options
 
-You can style the navigator appearance and behavior by passing an `options` object. This object can be passed when the screen is originally created; can be defined per-screen by setting `static options(passProps)` on the screen component; and can be overridden when a screen is pushed, dynamically (after the screen was already rendered at least once) using `mergeOptions()`.
+You can style the navigator appearance and behavior by passing an `options` object. This object can be passed when the screen is originally created; can be defined per-screen by setting `static options(passProps)` on the screen component; and can be overridden when a screen is pushed, dynamically \(after the screen was already rendered at least once\) using `mergeOptions()`.
 
 The easiest way to style your screen is by adding `static options(passProps)` to your screen React component definition. `passProps` is the same passProps you can specify as part of the push/modal or other command operation.
 
-```js
+```javascript
 export default class StyledScreen extends Component {
   static options(passProps) {
     return {
@@ -30,11 +30,12 @@ export default class StyledScreen extends Component {
 ```
 
 ## Enabling persistent styling properties
+
 In v2 we added `setDefaultOptions` API for styles that should be applied on all components.
 
 > `setDefaultOptions` Does not update options of existing component, therefore it should be called before `setRoot`
 
-```js
+```javascript
 Navigation.setDefaultOptions({
   topBar: {
     visible: false
@@ -43,9 +44,10 @@ Navigation.setDefaultOptions({
 ```
 
 ## Setting styles dynamically
+
 Use the `mergeOptions` method to change a screen's style dynamically. WARNING! these options will be applied on an already rendered screen, after it has been rendered at least once.
 
-```js
+```javascript
 Navigation.mergeOptions(this.props.componentId, {
   topBar: {
     visible: true
@@ -57,7 +59,7 @@ Navigation.mergeOptions(this.props.componentId, {
 
 ### Common options
 
-```js
+```javascript
 {
   statusBar: {
     visible: false,
@@ -191,7 +193,8 @@ Navigation.mergeOptions(this.props.componentId, {
 ```
 
 ### iOS specific options
-```js
+
+```javascript
 {
   statusBar: {
     hideWithTopBar: false,
@@ -251,7 +254,7 @@ Navigation.mergeOptions(this.props.componentId, {
 
 ### Android specific options
 
-```js
+```javascript
 {
   statusBar: {
     backgroundColor: 'red',
@@ -288,7 +291,9 @@ Navigation.mergeOptions(this.props.componentId, {
 ```
 
 ### RTL layout usage
+
 In order to set layout direction to RTL use following options:
+
 ```javascript
 {
   layout: {
@@ -298,8 +303,9 @@ In order to set layout direction to RTL use following options:
 }
 ```
 
-also __Android__ requires to set `supportsRTL` in _AndroidManifest.xml_
-```xml
+also **Android** requires to set `supportsRTL` in _AndroidManifest.xml_
+
+```markup
 <application
       android:name=".MainApplication"
 +     android:supportsRtl="true"
@@ -308,25 +314,29 @@ also __Android__ requires to set `supportsRTL` in _AndroidManifest.xml_
 ```
 
 ## Styling the StatusBar
-If you set any styles related to the Status Bar, make sure that in Xcode > project > Info.plist, the property `View controller-based status bar appearance` is set to `YES`.
+
+If you set any styles related to the Status Bar, make sure that in Xcode &gt; project &gt; Info.plist, the property `View controller-based status bar appearance` is set to `YES`.
 
 ## Custom fonts
+
 If you'd like to use a custom font, you'll first have to edit your project.
 
 * Android - add the `.ttf` or `.otf` files to `src/main/assets/fonts/`
-
 * iOS - follow this [guide](https://medium.com/@dabit3/adding-custom-fonts-to-react-native-b266b41bff7f)
 
 ## Custom tab icons
 
 * Android - add corresponding resolution icons into folders in `android/app/src/main/res`.
-For example, `icon_name.png` in each drawable-x folder.
+
+  For example, `icon_name.png` in each drawable-x folder.
+
 * iOS - drag and drop to `Images.xcassets` in Xcode.
-For example, image set `icon_name` in `Images.xcassets` with x1, x2, x3.
+
+  For example, image set `icon_name` in `Images.xcassets` with x1, x2, x3.
 
 Then, the tab icon can be defined with the following syntax:
 
-```js
+```javascript
 bottomTab: {
   icon: {
     uri: 'icon_name',
@@ -337,11 +347,13 @@ bottomTab: {
 ```
 
 ## Customizing screen animations
+
 Animation used for navigation commands that modify the layout hierarchy can be controlled in options. Animations can be modified per command and it's also possible to change the default animation for each command.
 
 ## Animation properties
 
 The following properties can be animated:
+
 * x
 * y
 * alpha
@@ -351,7 +363,7 @@ The following properties can be animated:
 * rotationY
 * rotation
 
-```js
+```javascript
 {
   from: 0, // Mandatory, initial value
   to: 1, // Mandatory, end value
@@ -361,8 +373,9 @@ The following properties can be animated:
 }
 ```
 
-For example, changing the animation used when the app is first launched (Supported only on Android):
-```js
+For example, changing the animation used when the app is first launched \(Supported only on Android\):
+
+```javascript
 Navigation.setDefaultOptions({
   animations: {
     setRoot: {
@@ -382,6 +395,7 @@ Navigation.setDefaultOptions({
 ## Customizing navigation commands animation
 
 Animations for the following set of commands can be customized
+
 * setRoot
 * push
 * pop
@@ -390,9 +404,9 @@ Animations for the following set of commands can be customized
 
 ## Customizing stack command animation
 
-When *pushing* and *popping* screens to and from a stack, you can control the TopBar, BottomTabs and actual content animations as separately.
+When _pushing_ and _popping_ screens to and from a stack, you can control the TopBar, BottomTabs and actual content animations as separately.
 
-```js
+```javascript
 animations: {
   push: {
     enabled: 'true' | 'false', // Optional, used to enable/disable the animation
@@ -421,3 +435,4 @@ animations: {
   }
 }
 ```
+

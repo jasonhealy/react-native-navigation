@@ -1,10 +1,12 @@
 # Installing
 
 ## Requirements
-* node >= 8
-* react-native >= 0.51
+
+* node &gt;= 8
+* react-native &gt;= 0.51
 
 ## npm
+
 * `npm install --save react-native-navigation`
 
 ## iOS
@@ -13,65 +15,71 @@
 
 ### Native Installation
 
-1. In Xcode, in Project Navigator (left pane), right-click on the `Libraries` > `Add files to [project name]`. Add `node_modules/react-native-navigation/lib/ios/ReactNativeNavigation.xcodeproj` ([screenshots](https://facebook.github.io/react-native/docs/linking-libraries-ios.html#manual-linking)).
+1. In Xcode, in Project Navigator \(left pane\), right-click on the `Libraries` &gt; `Add files to [project name]`. Add `node_modules/react-native-navigation/lib/ios/ReactNativeNavigation.xcodeproj` \([screenshots](https://facebook.github.io/react-native/docs/linking-libraries-ios.html#manual-linking)\).
+2. In Xcode, in Project Navigator \(left pane\), click on your project \(top\), then click on your _target_ row \(on the "project and targets list", which is on the left column of the right pane\) and select the `Build Phases` tab \(right pane\). In the `Link Binary With Libraries` section add `libReactNativeNavigation.a` \([screenshots](https://facebook.github.io/react-native/docs/linking-libraries-ios.html#step-2)\).
 
-2. In Xcode, in Project Navigator (left pane), click on your project (top), then click on your *target* row (on the "project and targets list", which is on the left column of the right pane) and select the `Build Phases` tab (right pane). In the `Link Binary With Libraries` section add `libReactNativeNavigation.a` ([screenshots](https://facebook.github.io/react-native/docs/linking-libraries-ios.html#step-2)).
+   a. If you're seeing an error message in Xcode such as:
 
-	a. If you're seeing an error message in Xcode such as:
-	```
-	'ReactNativeNavigation/ReactNativeNavigation.h' file not found.
-	```
-	You may also need to add a Header Search Path: ([screenshots](https://facebook.github.io/react-native/docs/linking-libraries-ios.html#step-3)).
-	```objectivec
-	$(SRCROOT)/../node_modules/react-native-navigation/lib/ios
-	```
+   ```text
+    'ReactNativeNavigation/ReactNativeNavigation.h' file not found.
+   ```
+
+   You may also need to add a Header Search Path: \([screenshots](https://facebook.github.io/react-native/docs/linking-libraries-ios.html#step-3)\).
+
+   ```objectivec
+    $(SRCROOT)/../node_modules/react-native-navigation/lib/ios
+   ```
 
 3. In Xcode, you will need to edit this file: `AppDelegate.m`. This function is the main entry point for your app:
 
-	```objectivec
-	 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions { ... }
+   ```objectivec
+     - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions { ... }
+   ```
 
-	```
+   Its content should look like this:
 
-	Its content should look like this:
-	```objectivec
-	#import "AppDelegate.h"
+   ```objectivec
+    #import "AppDelegate.h"
 
-	#import <React/RCTBundleURLProvider.h>
-	#import <React/RCTRootView.h>
-	#import <ReactNativeNavigation/ReactNativeNavigation.h>
+    #import <React/RCTBundleURLProvider.h>
+    #import <React/RCTRootView.h>
+    #import <ReactNativeNavigation/ReactNativeNavigation.h>
 
-	@implementation AppDelegate
+    @implementation AppDelegate
 
-	- (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
-	{
-		NSURL *jsCodeLocation = [[RCTBundleURLProvider sharedSettings] jsBundleURLForBundleRoot:@"index" fallbackResource:nil];
-		[ReactNativeNavigation bootstrap:jsCodeLocation launchOptions:launchOptions];
+    - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
+    {
+        NSURL *jsCodeLocation = [[RCTBundleURLProvider sharedSettings] jsBundleURLForBundleRoot:@"index" fallbackResource:nil];
+        [ReactNativeNavigation bootstrap:jsCodeLocation launchOptions:launchOptions];
 
-		return YES;
-	}
+        return YES;
+    }
 
-	@end
-	```
+    @end
+   ```
 
-a. If, in Xcode, you see the following error message in `AppDelegate.m` next to `#import "RCTBundleURLProvider.h"`: 
-	```
-	! 'RCTBundleURLProvider.h' file not found
-	```
-	This is because the `React` scheme is missing from your project. You can verify this by opening the `Product` menu and the `Scheme` submenu. 
-	To make the `React` scheme available to your project, run `npm install -g react-native-git-upgrade` followed by `react-native-git-upgrade`. Once this is done, you can click back to the menu in Xcode: `Product -> Scheme -> Manage Schemes`, then click '+' to add a new scheme. From the `Target` menu, select "React", and click the checkbox to make the scheme `shared`. This should make the error disappear.
+a. If, in Xcode, you see the following error message in `AppDelegate.m` next to `#import "RCTBundleURLProvider.h"`:
 
-	b. If, in Xcode, you see the following warning message in `AppDelegate.m` next to `#import "@implementation AppDelegate"`:
-	```
-	Class 'AppDelegate' does not conform to protocol 'RCTBridgeDelegate'
-	```
-	You can remove `RCTBridgeDelegate` from this file: `AppDelegate.h`:
-	```diff
-	- #import <React/RCTBridgeDelegate.h>
-	- @interface AppDelegate : UIResponder <UIApplicationDelegate, RCTBridgeDelegate>
-	+ @interface AppDelegate : UIResponder <UIApplicationDelegate>
-		...
-	```
+```text
+    ! 'RCTBundleURLProvider.h' file not found
+```
+
+```text
+This is because the `React` scheme is missing from your project. You can verify this by opening the `Product` menu and the `Scheme` submenu. 
+To make the `React` scheme available to your project, run `npm install -g react-native-git-upgrade` followed by `react-native-git-upgrade`. Once this is done, you can click back to the menu in Xcode: `Product -> Scheme -> Manage Schemes`, then click '+' to add a new scheme. From the `Target` menu, select "React", and click the checkbox to make the scheme `shared`. This should make the error disappear.
+
+b. If, in Xcode, you see the following warning message in `AppDelegate.m` next to `#import "@implementation AppDelegate"`:
+```
+Class 'AppDelegate' does not conform to protocol 'RCTBridgeDelegate'
+```
+You can remove `RCTBridgeDelegate` from this file: `AppDelegate.h`:
+```diff
+- #import <React/RCTBridgeDelegate.h>
+- @interface AppDelegate : UIResponder <UIApplicationDelegate, RCTBridgeDelegate>
++ @interface AppDelegate : UIResponder <UIApplicationDelegate>
+    ...
+```
+```
 
 ### Installation with CocoaPods
 
@@ -116,9 +124,8 @@ target 'YourApp' do
 end
 ```
 
-2. `cd ios && pod install`
-
-3. Follow 3 and 3b in the Native Installation section.
+1. `cd ios && pod install`
+2. Follow 3 and 3b in the Native Installation section.
 
 ## Android
 
@@ -146,7 +153,7 @@ zipStorePath=wrapper/dists
 
 ```diff
 buildscript {
-	repositories {
+    repositories {
 +        google()
 +        mavenLocal()
 +        mavenCentral()
@@ -155,28 +162,28 @@ buildscript {
 -            url 'https://maven.google.com/'
 -            name 'Google'
 -        }
-	}
-	dependencies {
+    }
+    dependencies {
 +        classpath 'com.android.tools.build:gradle:3.0.1'
 -        classpath 'com.android.tools.build:gradle:2.2.3'
-	}
+    }
 }
 
 allprojects {
-	repositories {
-+		google()
-		mavenLocal()
-		jcenter()
-		maven {
-			// All of React Native (JS, Obj-C sources, Android binaries) is installed from npm
-			url "$rootDir/../node_modules/react-native/android"
-		}
+    repositories {
++        google()
+        mavenLocal()
+        jcenter()
+        maven {
+            // All of React Native (JS, Obj-C sources, Android binaries) is installed from npm
+            url "$rootDir/../node_modules/react-native/android"
+        }
 -        maven {
 -            url 'https://maven.google.com/'
 -            name 'Google'
 -        }
-+		maven { url 'https://jitpack.io' }
-	}
++        maven { url 'https://jitpack.io' }
+    }
 }
 
 ext {
@@ -186,8 +193,6 @@ ext {
     targetSdkVersion = 26
     supportLibVersion = "26.1.0"
 }
-
-
 ```
 
 ### 4 Update project dependencies in `android/app/build.gradle`.
@@ -207,11 +212,11 @@ android {
             abiFilters "armeabi-v7a", "x86"
         }
     }
-+	compileOptions {
-+		sourceCompatibility JavaVersion.VERSION_1_8
-+		targetCompatibility JavaVersion.VERSION_1_8
-+	}
-	...
++    compileOptions {
++        sourceCompatibility JavaVersion.VERSION_1_8
++        targetCompatibility JavaVersion.VERSION_1_8
++    }
+    ...
 }
 
 dependencies {
@@ -224,6 +229,7 @@ dependencies {
 ```
 
 ### 5 RNN and React Native version
+
 react-native-navigation supports multiple React Native versions. Target the React Native version required by your project by specifying the RNN build flavor in `android/app/build.gradle`.
 
 ```diff
@@ -242,13 +248,15 @@ android {
 }
 ```
 
-!>Important note about `missingDimensionStrategy`<Br>
->`reactNative51` - RN 0.54.x and below<Br>
->`reactNative55` - RN 0.55.x<Br>
->`reactNative56` - RN 0.56.x<Br>
->`reactNative57` - RN 0.57.0 - 0.57.4<Br>
->`reactNative57_5` - RN 0.57.5 - 0.59.9<Br>
->`reactNative60` - RN 0.60.0 and above
+!&gt;Important note about `missingDimensionStrategy`  
+
+
+> `reactNative51` - RN 0.54.x and below  
+>  `reactNative55` - RN 0.55.x  
+>  `reactNative56` - RN 0.56.x  
+>  `reactNative57` - RN 0.57.0 - 0.57.4  
+>  `reactNative57_5` - RN 0.57.5 - 0.59.9  
+>  `reactNative60` - RN 0.60.0 and above
 
 Now we need to instruct gradle how to build that flavor. To do so here two solutions:
 
@@ -256,7 +264,7 @@ Now we need to instruct gradle how to build that flavor. To do so here two solut
 
 **prefered solution** The RNN flavor you would like to build is specified in `app/build.gradle`. Therefore in order to compile only that flavor, instead of building your entire project using `./gradlew assembleDebug`, you should instruct gradle to build the app module: `./gradlew app:assembleDebug`. The easiest way is to add a package.json command to build and install your debug Android APK .
 
-```
+```text
 "scripts": {
   ...
   "android": "cd ./android && ./gradlew app:assembleDebug && ./gradlew installDebug"
@@ -288,8 +296,7 @@ To do so edit `android/build.gradle` and add:
 +}
 ```
 
-**Note**: As more build variants come available in the future, you will need to adjust the list (`names.contains("reactNative51") || names.contains("reactNative55")`). This is why we recommend the first solution.
-
+**Note**: As more build variants come available in the future, you will need to adjust the list \(`names.contains("reactNative51") || names.contains("reactNative55")`\). This is why we recommend the first solution.
 
 ### 6. Update `MainActivity.java`
 
@@ -366,14 +373,13 @@ import java.util.List;
 +    }
 - ...
 +}
-
 ```
 
-### 8. Force the same support library version across all dependencies (optional)
+### 8. Force the same support library version across all dependencies \(optional\)
 
 Some of your dependencies might require a different version of one of Google's support library packages. This results in compilation errors similar to this:
 
-```
+```text
 FAILURE: Build failed with an exception.
 
 * What went wrong:
@@ -402,12 +408,12 @@ dependencies {
     implementation 'com.android.support:design:25.4.0'
     implementation "com.android.support:appcompat-v7:${rootProject.ext.supportLibVersion}"
 }
-
 ```
 
 ## You can use react-native-navigation \o/
 
 Update `index.js` file
+
 ```diff
 +import { Navigation } from "react-native-navigation";
 -import {AppRegistry} from 'react-native';
@@ -428,4 +434,5 @@ import App from "./App";
 +});
 ```
 
-⚠️ we use the layout type `component` here, which renders a React component but does not allow you to navigate to others. See [Usage](docs/Usage.md) and [LayoutTypes](docs/layout-types.md) for more options.
+⚠️ we use the layout type `component` here, which renders a React component but does not allow you to navigate to others. See [Usage](https://github.com/jasonhealy/react-native-navigation/tree/1581780d2ca66acebdb149751afa1bb4afc1c59e/docs/docs/docs/Usage.md) and [LayoutTypes](https://github.com/jasonhealy/react-native-navigation/tree/1581780d2ca66acebdb149751afa1bb4afc1c59e/docs/docs/docs/layout-types.md) for more options.
+

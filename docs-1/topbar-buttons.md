@@ -1,8 +1,10 @@
-# Button options
+# topBar-buttons
+
+## Button options
 
 The following options can be used to customise buttons.
 
-```js
+```javascript
 {
   id: 'buttonOne',
   icon: require('icon.png'),
@@ -25,7 +27,8 @@ The following options can be used to customise buttons.
 }
 ```
 
-## iOS System Items
+### iOS System Items
+
 On iOS, UIKit supplies some common bar button glyphs for developers to use. The following values can be supplied as values to to `systemItem` to use them as an icon for your button.
 
 * `done`
@@ -54,11 +57,9 @@ On iOS, UIKit supplies some common bar button glyphs for developers to use. The 
 
 More information about these glyphs can be found in [Apple's Human Interface Guidelines](https://developer.apple.com/ios/human-interface-guidelines/icons-and-images/system-icons/).
 
+### Android showAsAction
 
-## Android showAsAction
-
-The keyword `showAsAction` configures when and how an item should appear as an action item in the app bar. 
-A menu item can appear as an action item only when the activity includes an app bar.
+The keyword `showAsAction` configures when and how an item should appear as an action item in the app bar. A menu item can appear as an action item only when the activity includes an app bar.
 
 * `always`
 * `ifRoom`
@@ -67,11 +68,11 @@ A menu item can appear as an action item only when the activity includes an app 
 
 [More info about `showAsAction` values](https://developer.android.com/guide/topics/resources/menu-resource)
 
-# Declaring Buttons statically
+## Declaring Buttons statically
 
 Buttons can be defined in a screen's options:
 
-```js
+```javascript
 class MyScreen extends Component {
   static options(passProps) {
     return {
@@ -86,15 +87,15 @@ class MyScreen extends Component {
       }
     };
   }
-  
+
 }
 ```
 
-# Declaring buttons dynamically
+## Declaring buttons dynamically
 
 TopBar buttons can be declared dynamically as well when adding a screen to the layout hierarchy.
 
-```js
+```javascript
 Navigation.push(this.props.componentId, {
   component: {
     name: 'navigation.playground.PushedScreen',
@@ -112,14 +113,11 @@ Navigation.push(this.props.componentId, {
 }
 ```
 
-# Handling button press events
+## Handling button press events
 
-Navigation sends events on button clicks, to which you can subscribe from anywhere using `Navigation.events().registerNavigationButtonPressedListener((event) => {})`.
-Additionally the component can listen to the button clicks just for its own buttons (via componentId) by using `events().bindComponent(this)`.
-This has to be called if you want the component to handle navigation events, such as navigationButtonPressed.
-Example:
+Navigation sends events on button clicks, to which you can subscribe from anywhere using `Navigation.events().registerNavigationButtonPressedListener((event) => {})`. Additionally the component can listen to the button clicks just for its own buttons \(via componentId\) by using `events().bindComponent(this)`. This has to be called if you want the component to handle navigation events, such as navigationButtonPressed. Example:
 
-```js
+```javascript
 class MyScreen extends Component {
   static options(passProps) {
     return {
@@ -143,15 +141,15 @@ class MyScreen extends Component {
 }
 ```
 
-# Modifying buttons at runtime
+## Modifying buttons at runtime
 
 As buttons are part of a screen's options, they can be modified like any other styling option using the `mergeOptions` command.
 
-## Setting buttons
+### Setting buttons
 
 The following command will set the screen's right buttons. If the screen already has Right Buttons declared - they will be overridden.
 
-```js
+```javascript
 Navigation.mergeOptions(this.props.componentId, {
   topBar: {
     rightButtons: [
@@ -164,14 +162,15 @@ Navigation.mergeOptions(this.props.componentId, {
 });
 ```
 
-## Removing buttons
+### Removing buttons
 
 Buttons can be removed by setting zero buttons, as shown in the snippet below.
 
-```js
+```javascript
 Navigation.mergeOptions(this.props.componentId, {
   topBar: {
     rightButtons: []
   }
 });
 ```
+
